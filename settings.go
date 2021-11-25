@@ -58,7 +58,7 @@ type AppSettings struct {
 
 	Middleware string `json:"middleware"`
 
-	InputHTTP    MultiOption
+	InputHTTP    MultiOption `json:"input-http"`
 	OutputHTTP   MultiOption `json:"output-http"`
 	PrettifyHTTP bool        `json:"prettify-http"`
 
@@ -151,6 +151,7 @@ func init() {
 
 	flag.StringVar(&Settings.Middleware, "middleware", "", "Used for modifying traffic using external command")
 
+        flag.Var(&Settings.inputHTTP, "input-http", "Read requests from HTTP, should be explicitly sent from your application:\n\t# Listen for http on 9000\n\tgor --input-http :9000 --output-http staging.com")
 	flag.Var(&Settings.OutputHTTP, "output-http", "Forwards incoming requests to given http address.\n\t# Redirect all incoming requests to staging.com address \n\tgor --input-raw :80 --output-http http://staging.com")
 
 	/* outputHTTPConfig */
